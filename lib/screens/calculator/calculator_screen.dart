@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:calculatorui/material/colors.dart';
+import 'package:calculatorui/screens/calculator/components/button_widget.dart';
 
 class CalculatorScreen extends StatelessWidget {
   @override
@@ -38,6 +39,32 @@ class CalculatorScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: MyColors.background2,
         borderRadius: BorderRadius.vertical(top: Radius.circular(16))
+      ),
+      child: Column(
+        children: [
+          buildButtonRow("AC", "<", "", "/"),
+          buildButtonRow("7", "8", "9", "x"),
+          buildButtonRow("4", "5", "6", "-"),
+          buildButtonRow("1", "2", "3", "+"),
+          buildButtonRow("0", ".", "", "=")
+        ],
+    ),
+    );
+  }
+
+  Widget buildButtonRow(String first, String second, String third, String fourth){
+    final row = [first, second, third, fourth];
+
+    return Expanded(
+      child: Row(
+        children: row.map((text) => 
+          ButtonWidget(
+            text: text,
+            onClicked: (){},
+            onLongPress: (){}
+          )
+        ).toList()
+        ,
       ),
     );
   }
